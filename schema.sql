@@ -1,0 +1,45 @@
+-- schema.sql
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE,
+  password TEXT,
+  role TEXT
+);
+
+CREATE TABLE IF NOT EXISTS menu_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  category TEXT,
+  price INTEGER,
+  diet TEXT,
+  calories INTEGER,
+  stock INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_name TEXT,
+  table_no TEXT,
+  items TEXT,
+  total INTEGER,
+  status TEXT,
+  paid INTEGER DEFAULT 0,
+  phone TEXT,
+  loyalty_points INTEGER,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS payments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_id INTEGER,
+  amount INTEGER,
+  paid_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS feedback (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_id INTEGER,
+  rating INTEGER,
+  comment TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
